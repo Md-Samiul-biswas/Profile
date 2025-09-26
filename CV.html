@@ -1,210 +1,616 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>CV - Md Samiul Biswas</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Md Samiul Biswas — Digital Marketing and Web Designer</title>
+  <meta name="description" content="Ahsanul Hasnat — Data Analyst (SQL, Python, Power BI)" />
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #f0f4f8, #d9e4f5);
-      margin: 0;
-      padding: 0;
-      color: #333;
+    :root{
+      --bg:#071024;
+      --card: rgba(255,255,255,0.04);
+      --glass: rgba(255,255,255,0.06);
+      --accent: #06b6d4;
+      --accent-2: #7c3aed;
+      --muted: #98a0b3;
+      --radius:14px;
+      --maxw:1100px;
     }
-    .container {
-      max-width: 900px;
-      background: #fff;
-      margin: 40px auto;
-      padding: 30px 40px;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth; scroll-padding-top: 80px; /* height of nav + margin */}
+    body{margin:0;min-height:100%;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;padding:40px;background:linear-gradient(180deg,#071022 0%, #081027 100%);color:#eaf2fb;display:flex;justify-content:center}
+
+    .wrap{width:100%;max-width:var(--maxw)}
+
+		/* HERO BACKGROUND ANIMATION */
+#hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+header#home {
+  position: relative;
+  overflow: hidden;
+  padding-top: 90px;
+  padding-bottom: 40px;
+}
+
+
+
+
+    /* NAV */
+    nav{position:fixed;left:0;right:0;top:18px;margin:auto;max-width:var(--maxw);display:flex;justify-content:space-between;align-items:center;padding:10px 18px;background:#2e4045, rgba(255,255,255,0.01));backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-radius:12px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 8px 30px rgba(2,6,23,0.6); z-index: 999; /* ensure nav is on top */
+	
+	}
+    .nav-left{display:flex;gap:12px;align-items:center}
+    .logo{font-weight:700;color:var(--accent);font-size:18px}
+    .nav-right ul{display:flex;gap:12px;list-style:none;margin:0;padding:0}
+    .nav-right a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px}
+    .nav-right a:hover{color:#fff;background:rgba(255,255,255,0.02)}
+
+    /* HERO */
+    header {
+	  padding-top: 120px; /* increased from 90px to avoid overlap with nav */
+	  padding-bottom: 40px;
+	  position: relative;
+	  z-index: 1; /* ensure nav stays above hero card */
+	}
+
+    .hero{display:grid;grid-template-columns:1fr 500px;gap:24px;align-items:center}
+
+    .hero-card{background:linear-gradient(180deg,var(--card), rgba(255,255,255,0.02));padding:28px;border-radius:16px;border:1px solid rgba(255,255,255,0.04);backdrop-filter: blur(6px);-webkit-backdrop-filter: blur(6px);WIDTH: AUTO;}
+    .hero h1{font-size:36px;margin:0 0 6px}
+    .hero h2{margin:0 0 12px;color:var(--accent);font-weight:600}
+    .hero p{color:var(--muted);margin-bottom:18px}
+    .cta{display:flex;gap:12px}
+    .btn{padding:10px 16px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#06121a}
+    .btn-ghost{background:transparent;color:var(--accent);border:1px solid rgba(255,255,255,0.04)}
+
+    .stats{display:flex;gap:12px;margin-top:16px}
+    .stat{background:rgba(255,255,255,0.02);padding:10px 14px;border-radius:10px;text-align:center}
+    .stat strong{display:block;font-size:18px}
+    .avatar-card{display:flex;flex-direction:column;align-items:center;gap:12px;padding:18px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
+    .avatar{width:160px;height:160px;border-radius:16px;overflow:hidden}
+    .avatar img{width:100%;height:100%;object-fit:cover}
+    .role{color:var(--muted)}
+
+    /* SECTIONS */
+    section{margin-top:22px}
+    section.card{padding:20px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);}
+    h3.section-title{margin-top:0;color:var(--accent);font-size:20px}
+
+    /* ABOUT */
+    .about-grid{display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start}
+
+    /* RESUME / TIMELINE */
+    .timeline{border-left:2px dashed rgba(255,255,255,0.04);padding-left:18px}
+    .timeline-item{margin-bottom:18px}
+    .timeline-item h4{margin:0;color:#fff}
+    .timeline-item p{margin:6px 0;color:var(--muted)}
+
+    /* SKILLS - new fancy cards */
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:18px;margin-top:14px}
+    .skill-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;display:flex;flex-direction:column;align-items:center;gap:12px;transition:transform .28s, box-shadow .28s}
+    .skill-card:hover{transform:translateY(-8px);box-shadow:0 14px 36px rgba(2,6,23,0.6)}
+    .skill-icon{width:72px;height:72px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;color:#fff;box-shadow:inset 0 -8px 18px rgba(0,0,0,0.25)}
+    .skill-name{font-weight:700}
+    /* gradients for icons */
+    .sql{background:linear-gradient(135deg,#0ea5a4,#0284c7)}
+    .python{background:linear-gradient(135deg,#ffd43b,#3776ab);color:#081022}
+    .excel{background:linear-gradient(135deg,#16a34a,#0f766e)}
+    .powerbi{background:linear-gradient(135deg,#facc15,#f97316);color:#081022}
+    .numpy{background:linear-gradient(135deg,#7c3aed,#4f46e5)}
+    .pandas{background:linear-gradient(135deg,#06b6d4,#0284c7)}
+    .matplotlib{background:linear-gradient(135deg,#fb7185,#f97316)}
+    .photoshop{background:linear-gradient(135deg,#001e3c,#0b3a66)}
+    .illustrator{background:linear-gradient(135deg,#ff7a00,#ff4d00)}
+    .rlang{background:linear-gradient(135deg,#2769b0,#5b86e5)}
+
+    /* PROJECTS */
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:14px}
+    .project-card{border-radius:12px;padding:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);transition:transform .25s}
+    .project-card:hover{transform:translateY(-6px)}
+    .project-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .tag{background:rgba(255,255,255,0.02);padding:6px 10px;border-radius:999px;font-size:12px;color:var(--muted)}
+
+    /* CONTACT */
+.contact-box {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.03);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.contact-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.contact-box h4 {
+  margin: 10px 0 6px;
+  color: var(--accent);
+}
+
+.contact-box p, .contact-box a {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+
+footer .social-links a {
+  display: inline-flex;
+  align-items: center;
+  gap:6px;
+  color: #06b6d4;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s, transform 0.2s;
+}
+
+footer .social-links a:hover {
+  color: #7c3aed;
+  transform: translateY(-2px);
+}
+
+
+	
+		.project-card {
+  background:linear-gradient(180deg,#071022 0%, #081027 100%);
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+}
+
+.project-image {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.project-tags .tag {
+  display: inline-block;
+  background-color: blue;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+  font-size: 0.85rem;
+}
+	
+	
+
+    @media(max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .about-grid{grid-template-columns:1fr}
     }
-    .header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    .header h1 {
-      margin: 0;
-      font-size: 32px;
-      color: #2c3e50;
-    }
-    .header p {
-      margin: 5px 0;
-      font-size: 14px;
-      color: #555;
-    }
-    h2 {
-      color: #1a73e8;
-      border-bottom: 2px solid #e1e1e1;
-      padding-bottom: 6px;
-      margin-top: 30px;
-      margin-bottom: 15px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 20px;
-    }
-    table, th, td {
-      border: 1px solid #ccc;
-      padding: 10px;
-      font-size: 14px;
-    }
-    th {
-      background: #f5f7fa;
-      text-align: left;
-    }
-    ul {
-      list-style-type: square;
-      padding-left: 20px;
-    }
-    .reference, .signature {
-      margin-top: 20px;
-    }
-    .signature {
-      text-align: right;
-    }
-    .badge {
-      display: inline-block;
-      background: #1a73e8;
-      color: #fff;
-      padding: 3px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-      margin-left: 8px;
-    }
-    .card {
-      background: #f9fbff;
-      padding: 12px 15px;
-      border-radius: 8px;
-      box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
-      margin-bottom: 10px;
-    }
+
   </style>
 </head>
 <body>
+  <div class="wrap">
+    <nav>
+      <div class="nav-left">
+        <div class="logo">Md Samiul Biswas</div>
+      </div>
+      <div class="nav-right">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#resume">Resume</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
 
-  <div class="container">
-    <!-- Header -->
-    <div class="header">
-      <h1>Md Samiul Biswas</h1>
-      <p>House-5, Road-7, Block-f, Eastern Housing, Section-11, Mirpur, Dhaka-1216</p>
-      <p><b>Mobile:</b> 01621891990 | <b>Email:</b> samiulbiswas016@gmail.com</p>
-    </div>
+    <!-- HERO -->
+    <header id="home">
+  <canvas id="hero-bg"></canvas>
+  <div class="hero">
+    <div class="hero-card">
+      <aside class="avatar-card">
+        <div class="avatar"><img src="https://github.com/Md-Samiul-biswas/Profile/blob/main/Profile.jpg?raw=true" alt="Avatar"></div>
+        <div><strong>Md Samiul Biswas</strong></div>
+        <div class="role">Digital Marketing and Web Designer</div>
+      </aside>
 
-    <!-- Career Objective -->
-    <h2>Career Objective</h2>
-    <div class="card">
-      Seeking responsibilities and opportunities in those areas where academic background and skill can be exercised and field of interests are also synchronized in order to develop and upgrade my career. I am willing committed individual.
-    </div>
-
-    <!-- Personal Details -->
-    <h2>Personal Details</h2>
-    <table>
-      <tr><th>Father's Name</th><td>Shahidur Rahman</td></tr>
-      <tr><th>Mother's Name</th><td>Sufia Begum</td></tr>
-      <tr><th>Date of Birth</th><td>July 20, 1999</td></tr>
-      <tr><th>Gender</th><td>Male</td></tr>
-      <tr><th>Marital Status</th><td>Unmarried</td></tr>
-      <tr><th>Nationality</th><td>Bangladeshi (By Birth)</td></tr>
-      <tr><th>Religion</th><td>Islam</td></tr>
-      <tr><th>Permanent Address</th><td>Manikgonk Sador</td></tr>
-      <tr><th>Current Location</th><td>Mirpur, Dhaka-1216</td></tr>
-    </table>
-
-    <!-- Academic Qualification -->
-    <h2>Academic Qualification</h2>
-    <table>
-      <tr>
-        <th>Exam Title</th>
-        <th>Major</th>
-        <th>Institute</th>
-        <th>Grade</th>
-        <th>Year</th>
-      </tr>
-      <tr>
-        <td>BBA (Honors)</td>
-        <td>Marketing</td>
-        <td>Northern University of Bangladesh</td>
-        <td>-</td>
-        <td>Drop-out</span></td>
-      </tr>
-      <tr>
-        <td>HSC</td>
-        <td>Diploma in Computer Operator</td>
-        <td>Khan Bahadur Aulad Hossen Khan College</td>
-        <td>A-</td>
-        <td>2009</td>
-      </tr>
-      <tr>
-        <td>SSC</td>
-        <td>Arts</td>
-        <td>Hatipara M.L High School</td>
-        <td>B</td>
-        <td>2007</td>
-      </tr>
-    </table>
-
-    <!-- Computer Skills -->
-    <h2>Computer Skills</h2>
-    <ul>
-      <li><b>Video Editing:</b> Adobe Premier Pro, Filmora (Intermediate)</li>
-      <li><b>Graphics:</b> Adobe Photoshop, Adobe Illustrator</li>
-      <li><b>Office Tools:</b> MS Word, MS PowerPoint, Google Sheet</li>
-      <li><b>Others:</b> E-mail & Internet Browsing</li>
-    </ul>
-
-    <!-- Work Experience -->
-    <h2>Work Experience</h2>
-    <div class="card">
-      <b>Shikbe Sobai</b> – Data Entry Operator <br>
-      <small>(2018-2019)</small>
-    </div>
-    <div class="card">
-      <b>Tech Dental</b> – Digital Marketing Executive (Head Office) <br>
-      <small>(Running)</small>
-    </div>
-
-    <!-- Languages -->
-    <h2>Language Proficiency</h2>
-    <table>
-      <tr>
-        <th>Language</th>
-        <th>Reading</th>
-        <th>Writing</th>
-        <th>Speaking</th>
-      </tr>
-      <tr>
-        <td>English</td>
-        <td>Medium</td>
-        <td>Medium</td>
-        <td>Medium</td>
-      </tr>
-      <tr>
-        <td>Bengali</td>
-        <td>High</td>
-        <td>High</td>
-        <td>High</td>
-      </tr>
-    </table>
-
-    <!-- Reference -->
-    <h2>Reference</h2>
-    <p class="reference">
-      <b>Name:</b> Noman Khan <br>
-      <b>Organization:</b> Tech Dental <br>
-      <b>Designation:</b> CEO <br>
-      <b>Address:</b> Mirpur Shewrapra, Dhaka <br>
-      <b>Phone:</b> 01999320476
-    </p>
-
-    <!-- Signature -->
-    <div class="signature">
-      <p>Date: 01-05-2024</p>
-      <p><b>Md Samiul Biswas</b></p>
-      <p><i>Signature</i></p>
+      <p>I’m Md Samiul Biswas, a Digital Marketing expert and Web Designer. I specialize in Facebook Marketing, SEO, WordPress Theme Customization, and Content Creation, creating user-friendly websites and data-driven campaigns that help businesses grow online.</p>
+      <div class="cta">
+        <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Hire Me</button>
+        <a class="btn btn-ghost" href="CV.html">View Resume</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong>10+</strong><span class="role">Projects</span></div>
+        <div class="stat"><strong>5 yrs</strong><span class="role">Experience</span></div>
+      </div>
     </div>
   </div>
+</header>
 
+    <!-- ABOUT -->
+    <section id="about" class="card">
+      <h3 class="section-title">About</h3>
+      <div class="about-grid">
+        <div>
+          <p>I am Md Samiul Biswas, a passionate Digital Marketing Expert & Web Designer with skills in Facebook Marketing, SEO, WordPress Theme Customization, and Content Creation. I specialize in creating and optimizing websites and digital campaigns to reach the right audience, enhance engagement, and drive measurable business growth. With a strong foundation in web design and marketing strategies, I aim to deliver impactful online solutions that combine creativity and data-driven insights.</p>
+		  
+          <p><strong>Domains:</strong> E-Commerce, Dental, Hospital, Digital Business, Resturant</p>
+          <p><strong>Languages:</strong> English, Bangla</p>
+        </div>
+        <div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <h4>Education</h4>
+              <p>BBA(Hon's) in Marketing (Northren University)</p>
+            </div>
+            <div class="timeline-item">
+              <h4>Profile</h4>
+              <p>Data Analytics — BI, Reporting & Statistical Analysis</p>
+            </div>
+            <div class="timeline-item">
+              <h4>Interests</h4>
+              <p>Traveling, Travel Photography, Computer, Ai</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESUME -->
+    <section id="resume" class="card">
+      <h3 class="section-title">Resume</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h4>Experience</h4>
+          <p>5+ years in Digital Marketing & Web Design — specializing in Facebook Marketing, SEO, WordPress Theme Customization, Content Creation, and AI-powered Content Creation, working with startups and businesses to enhance online presence, engage audiences, and drive growth.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>Achievements</h4>
+          <p>✅ <strong>10+ Completed Projects</strong> — Websites, digital campaigns, e-commerce solutions, and AI-powered content creation.<br>
+			✅ <strong>5+ Years Experience</strong> — Helping startups and businesses grow their online presence.<br>
+			✅ <strong>Expertise in Digital Marketing & Web Design</strong> — Facebook Marketing, SEO, WordPress Theme Customization, Content Creation.<br>
+			✅ <strong>AI Content Creation</strong> — Leveraging AI to create engaging and impactful content.<br>
+
+			</p>
+        </div>
+      </div>
+    </section>
+
+   <!-- SKILLS (all image icons) -->
+<section id="skills" class="card">
+  <h3 class="section-title">Skills</h3>
+  <div class="skills-grid">
+    <!-- Web Design -->
+    <div class="skill-card">
+      <div class="skill-icon webdesign">
+        <img src="https://github.com/Md-Samiul-biswas/Profile/blob/main/responsive-design.png?raw=true" alt="Web Design" style="width:40px; height:40px;">
+      </div>
+      <div class="skill-name">Web Design</div>
+    </div>
+    <!-- SEO -->
+    <div class="skill-card">
+      <div class="skill-icon seo">
+        <img src="https://github.com/Md-Samiul-biswas/Profile/blob/main/seo.png?raw=true" alt="SEO" style="width:40px; height:40px;">
+      </div>
+      <div class="skill-name">SEO</div>
+    </div>
+    <!-- Content Creator -->
+    <div class="skill-card">
+      <div class="skill-icon content">
+        <img src="https://github.com/Md-Samiul-biswas/Profile/blob/main/creative.png?raw=true" alt="Content Creator" style="width:40px; height:40px;">
+      </div>
+      <div class="skill-name">Content Creator</div>
+    </div>
+    <!-- AI Content Creation -->
+    <div class="skill-card">
+      <div class="skill-icon ai">
+        <img src="https://github.com/Md-Samiul-biswas/Profile/blob/main/AI.png?raw=true" alt="AI Content Creation" style="width:40px; height:40px;">
+      </div>
+      <div class="skill-name">AI Content Creation</div>
+    </div>
+    <!-- Adobe Photoshop -->
+    <div class="skill-card">
+      <div class="skill-icon photoshop">
+        <img src="https://github.com/Md-Samiul-biswas/Profile/blob/main/adobe-photoshop.png?raw=true" alt="Adobe Photoshop" style="width:40px; height:40px;">
+      </div>
+      <div class="skill-name">Adobe Photoshop</div>
+    </div>
+    <!-- Adobe Illustrator -->
+    <div class="skill-card">
+      <div class="skill-icon illustrator">
+        <img src="https://github.com/Md-Samiul-biswas/Profile/blob/main/illustrator.png?raw=true" alt="Adobe Illustrator" style="width:40px; height:40px;">
+      </div>
+      <div class="skill-name">Adobe Illustrator</div>
+    </div>
+    <!-- Adobe Premiere Pro -->
+    <div class="skill-card">
+      <div class="skill-icon premiere">
+        <img src="https://github.com/Md-Samiul-biswas/Profile/blob/main/premiere-pro.png?raw=true" alt="Adobe Premiere Pro" style="width:40px; height:40px;">
+      </div>
+      <div class="skill-name">Adobe Premiere Pro</div>
+    </div>
+  </div>
+</section>
+
+
+
+    <!-- PROJECTS -->
+    <section id="projects" class="card">
+      <h3 class="section-title">Projects</h3>
+      <div class="projects-grid">
+       <div class="project-card">
+		  <img src="https://images-platform.99static.com/a4hHM4ScRkZwmW-lg9J_HcPXEBk=/0x0:1349x1349/500x500/top/smart/99designs-contests-attachments/67/67507/attachment_67507620" alt="Sales Dashboard" class="project-image">
+		  <h4>Wordpress Website</h4>
+		  <p>Custom WordPress website designed for responsive layout, SEO optimization, and engaging user experience.</p>
+		  <div class="project-tags">
+			<span class="tag">WordPress</span>
+			<span class="tag">SEO</span>
+			<span class="tag">Web Design</span>
+		  </div>
+		</div>
+		<div class="project-card">
+		  <img src="https://images-platform.99static.com/a4hHM4ScRkZwmW-lg9J_HcPXEBk=/0x0:1349x1349/500x500/top/smart/99designs-contests-attachments/67/67507/attachment_67507620" alt="Sales Dashboard" class="project-image">
+		  <h4>SEO Optimization</h4>
+		  <p>Improving website visibility and organic traffic through on-page and off-page SEO strategies.</p>
+		  <div class="project-tags">
+			<span class="tag">SEO</span>
+			<span class="tag">On-Page</span>
+			<span class="tag">Off-Page</span>
+		  </div>
+		</div>
+		<div class="project-card">
+		  <img src="https://images-platform.99static.com/a4hHM4ScRkZwmW-lg9J_HcPXEBk=/0x0:1349x1349/500x500/top/smart/99designs-contests-attachments/67/67507/attachment_67507620" alt="Sales Dashboard" class="project-image">
+		  <h4>Facebook Marketing</h4>
+		  <p>Creating and managing Facebook campaigns to boost engagement, reach, and conversions for businesses.</p>
+		  <div class="project-tags">
+			<span class="tag">Facebook Ads</span>
+			<span class="tag">Social Media</span>
+			<span class="tag">Engagement</span>
+		  </div>
+		</div>
+		<div class="project-card">
+		  <img src="https://images-platform.99static.com/a4hHM4ScRkZwmW-lg9J_HcPXEBk=/0x0:1349x1349/500x500/top/smart/99designs-contests-attachments/67/67507/attachment_67507620" alt="Sales Dashboard" class="project-image">
+		  <h4>Content Creator</h4>
+		  <p>Creating engaging content for social media, blogs, and marketing campaigns to increase brand visibility.<</p>
+		  <div class="project-tags">
+			<span class="tag">Blog</span>
+			<span class="tag">Social Media</span>
+			<span class="tag">Video</span>
+		  </div>
+		</div>
+		<div class="project-card">
+		  <img src="https://images-platform.99static.com/a4hHM4ScRkZwmW-lg9J_HcPXEBk=/0x0:1349x1349/500x500/top/smart/99designs-contests-attachments/67/67507/attachment_67507620" alt="Sales Dashboard" class="project-image">
+		  <h4>AI Content Creation</h4>
+		  <p>Leveraging AI tools to produce high-quality content efficiently and creatively.<</p>
+		  <div class="project-tags">
+			<span class="tag">ChatGPT</span>
+			<span class="tag">AI Tools</span>
+			<span class="tag">Automation</span>
+		  </div>
+		</div>
+		<div class="project-card">
+		  <img src="https://images-platform.99static.com/a4hHM4ScRkZwmW-lg9J_HcPXEBk=/0x0:1349x1349/500x500/top/smart/99designs-contests-attachments/67/67507/attachment_67507620" alt="Sales Dashboard" class="project-image">
+		  <h4>Adobe Illustrator</h4>
+		  <p>Creating vector graphics, logos, and illustrations for digital and print media.</p>
+		  <div class="project-tags">
+			<span class="tag">Illustration</span>
+			<span class="tag">Vector</span>
+			<span class="tag">Design</span>
+		  </div>
+		</div>
+		<div class="project-card">
+		  <img src="https://images-platform.99static.com/a4hHM4ScRkZwmW-lg9J_HcPXEBk=/0x0:1349x1349/500x500/top/smart/99designs-contests-attachments/67/67507/attachment_67507620" alt="Sales Dashboard" class="project-image">
+		  <h4>Adobe Premiere Pro</h4>
+		  <p>Editing videos and creating professional-quality video content for marketing and social media.</p>
+		  <div class="project-tags">
+			<span class="tag">Video Editing</span>
+			<span class="tag">Premiere Pro</span>
+			<span class="tag">Content</span>
+		  </div>
+		</div>
+		<div class="project-card">
+		  <img src="https://images-platform.99static.com/a4hHM4ScRkZwmW-lg9J_HcPXEBk=/0x0:1349x1349/500x500/top/smart/99designs-contests-attachments/67/67507/attachment_67507620" alt="Sales Dashboard" class="project-image">
+		  <h4>Adobe Photoshop</h4>
+		  <p>Designing and editing images, graphics, and digital artwork for professional projects..</p>
+		  <div class="project-tags">
+			<span class="tag">Photoshop</span>
+			<span class="tag">Editing</span>
+			<span class="tag">Design</span>
+		  </div>
+		</div>
+        
+      </div>
+    </section>
+
+
+
+<!-- CONTACT -->
+<section id="contact" class="card">
+  <h3 class="section-title">Contact</h3>
+  <div class="contact-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:20px; margin-top:20px;">
+    
+    <!-- Address -->
+    <div class="contact-box">
+      <img src="https://img.icons8.com/ios-filled/50/06b6d4/marker.png" alt="Address" style="margin-bottom:10px;">
+      <h4>Address</h4>
+      <p>Mirpur, Dhaka, Bangladesh</p>
+    </div>
+
+    <!-- Phone -->
+    <div class="contact-box">
+      <img src="https://img.icons8.com/ios-filled/50/06b6d4/phone.png" alt="Phone" style="margin-bottom:10px;">
+      <h4>Contact Number</h4>
+      <p>+8801621891990</p>
+    </div>
+
+    <!-- Email -->
+    <div class="contact-box">
+      <img src="https://img.icons8.com/ios-filled/50/06b6d4/new-post.png" alt="Email" style="margin-bottom:10px;">
+      <h4>Email Address</h4>
+      <p>samiulbiswas016@gmail.com</p>
+    </div>
+
+    <!-- CV Download -->
+    <div class="contact-box">
+      <img src="https://img.icons8.com/ios-filled/50/06b6d4/download.png" alt="CV" style="margin-bottom:10px;">
+      <h4>View My CV</h4>
+      <p><a href="CV.html" style="color:#06b6d4; text-decoration:none; font-weight:600;">Click Here</a></p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer style="margin-top:30px; text-align:center; color:var(--muted); font-size:14px;">
+  <div class="social-links" style="margin-bottom:8px; display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
+    <a href="#" target="_blank">
+      <img src="https://img.icons8.com/ios-filled/24/06b6d4/facebook-new.png"/> Facebook
+    </a>
+    <a href="#" target="_blank">
+      <img src="https://img.icons8.com/ios-filled/24/06b6d4/linkedin.png"/> LinkedIn
+    </a>
+    <a href="#" target="_blank">
+      <img src="https://img.icons8.com/ios-filled/24/06b6d4/instagram-new.png"/> Instagram
+    </a>
+    <a href="#" target="_blank">
+      <img src="https://img.icons8.com/ios-filled/24/06b6d4/youtube-play.png"/> YouTube
+    </a>
+    <a href="#" target="_blank">
+      <img src="https://img.icons8.com/ios-filled/24/06b6d4/whatsapp.png"/> WhatsApp
+    </a>
+    <a href="#" target="_blank">
+      <img src="https://img.icons8.com/ios-filled/24/06b6d4/github.png"/> GitHub
+    </a>
+  </div>
+  <div>Copyright ©2025 All rights reserved</div>
+</footer>
+
+
+
+
+  <script>
+    // Contact form: opens mailto so messages go to your email (replace your-email@example.com)
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = encodeURIComponent(document.getElementById('name').value);
+      const email = encodeURIComponent(document.getElementById('email').value);
+      const msg = encodeURIComponent(document.getElementById('message').value);
+      const to = 'your-email@example.com'; // <-- change this
+      const subject = encodeURIComponent('Message from portfolio website ('+name+')');
+      const body = encodeURIComponent('Name: '+name+'\nEmail: '+email+'\n\nMessage:\n'+msg);
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    });
+  </script>
+
+<script>
+const canvas = document.getElementById('hero-bg');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const particleCount = 120;
+const maxDistance = 120;
+const colors = ['#06b6d4','#7c3aed','#f97316','#facc15','#10b981','#ec4899'];
+let particles = [];
+let mouse = {x: null, y: null, radius: 150};
+
+for(let i=0; i<particleCount; i++){
+  particles.push({
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height,
+    dx: (Math.random()-0.5)*0.6,
+    dy: (Math.random()-0.5)*0.6,
+    radius: 1 + Math.random()*2,
+    color: colors[Math.floor(Math.random()*colors.length)]
+  });
+}
+
+canvas.addEventListener('mousemove', function(e){
+  mouse.x = e.x;
+  mouse.y = e.y;
+});
+canvas.addEventListener('mouseleave', function(){
+  mouse.x = null;
+  mouse.y = null;
+});
+
+function drawParticle(p){
+  ctx.beginPath();
+  ctx.arc(p.x, p.y, p.radius, 0, Math.PI*2);
+  ctx.fillStyle = p.color;
+  ctx.shadowColor = p.color;
+  ctx.shadowBlur = 8;
+  ctx.fill();
+  ctx.shadowBlur = 0;
+}
+
+function drawLines(){
+  for(let i=0;i<particles.length;i++){
+    for(let j=i+1;j<particles.length;j++){
+      let dx = particles[i].x - particles[j].x;
+      let dy = particles[i].y - particles[j].y;
+      let dist = Math.sqrt(dx*dx + dy*dy);
+      if(dist < maxDistance){
+        ctx.strokeStyle = `rgba(108, 99, 255,${1 - dist/maxDistance})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.stroke();
+      }
+    }
+    // Draw line to mouse if close
+    if(mouse.x !== null && mouse.y !== null){
+      let dx = particles[i].x - mouse.x;
+      let dy = particles[i].y - mouse.y;
+      let dist = Math.sqrt(dx*dx + dy*dy);
+      if(dist < mouse.radius){
+        ctx.strokeStyle = `rgba(255,255,255,${1 - dist/mouse.radius})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(mouse.x, mouse.y);
+        ctx.stroke();
+      }
+    }
+  }
+}
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{
+    drawParticle(p);
+    p.x += p.dx;
+    p.y += p.dy;
+    if(p.x<0||p.x>canvas.width) p.dx*=-1;
+    if(p.y<0||p.y>canvas.height) p.dy*=-1;
+  });
+  drawLines();
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+window.addEventListener('resize', ()=>{
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+</script>
+  
+  
 </body>
 </html>
